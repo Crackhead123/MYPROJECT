@@ -1,7 +1,5 @@
 <?php
 include('config/connection.php');
-error_reporting();
-
 if(isset($_POST['submit']))
 {
   echo "<script type='text/javascript'>alert('Record Updated');window.location.href='available.php';</script>";

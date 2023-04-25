@@ -1,10 +1,10 @@
 <?php
 include('config/connection.php');
-error_reporting(0);
-$source ="<script>document.write(localStorage.getItem('source-value'));</script>";
-$destination="<script>document.write(localStorage.getItem('destination-value'));</script>";
-$query = "SELECT * FROM train WHERE FROM_STN='$source' AND TO_STN='$destination'";
-$result = mysqli_query($conn,$query);
+$from = "<script>document.write(localStorage.getItem('source-value'));</script>";
+$to = "<script>document.write(localStorage.getItem('destination-value'));</script>";
+$query = "SELECT * FROM train WHERE FROM_STN='$from' AND TO_STN='$to'";
+
+
 
 
 ?>
@@ -21,7 +21,7 @@ $result = mysqli_query($conn,$query);
     <link href="css/bootstrap.css" rel="stylesheet">
     <title>Show Information</title>
 </head>
-<body class="bg-dark">
+<body>
     <div class="container">
         <div class="row mt-5">
             <div class="col">
@@ -42,9 +42,8 @@ $result = mysqli_query($conn,$query);
                             </tr>
                             <tr>
                                 <?php
-                                    while($row = mysqli_fetch_assoc($result))
+                                    while($row=mysqli_fetch_assoc(mysqli_query($conn,$query)))
                                     {
-
                                 ?>
                                     <td><?php echo $row['TR_NO'];?></td> 
                                     <td><?php echo $row['TR_NAME'];?></td>
