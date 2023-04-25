@@ -1,10 +1,18 @@
 <?php
-include('config/connection.php');
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname="myproject";
+
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password ,$dbname); 
 $from = "<script>document.write(localStorage.getItem('source-value'));</script>";
 $to = "<script>document.write(localStorage.getItem('destination-value'));</script>";
 $query = "SELECT * FROM train WHERE FROM_STN='$from' AND TO_STN='$to'";
 
-
+$row=mysqli_query($conn,$query);
 
 
 ?>
@@ -42,16 +50,16 @@ $query = "SELECT * FROM train WHERE FROM_STN='$from' AND TO_STN='$to'";
                             </tr>
                             <tr>
                                 <?php
-                                    while($row=mysqli_fetch_assoc(mysqli_query($conn,$query)))
+                                    while($result=mysqli_fetch_assoc($row))
                                     {
                                 ?>
-                                    <td><?php echo $row['TR_NO'];?></td> 
-                                    <td><?php echo $row['TR_NAME'];?></td>
-                                    <td><?php echo $row['FROM_STN'];?></td> 
-                                    <td><?php echo $row['TO_STN'];?></td>  
-                                    <td><?php echo $row['SEATS'];?></td> 
-                                    <td><?php echo $row['FARE'];?></td> 
-                                    <td><a class="btn bg-primary text-white" href="information.php?tno=<?php echo $row['TR_NO'];?>&tname=<?php echo $row['TR_NAME'];?>&fare=<?php echo $row['FARE'];?>">Book Now</a></td>
+                                    <td><?php echo $result['TR_NO'];?></td> 
+                                    <td><?php echo $result['TR_NAME'];?></td>
+                                    <td><?php echo $result['FROM_STN'];?></td> 
+                                    <td><?php echo $result['TO_STN'];?></td>  
+                                    <td><?php echo $result['SEATS'];?></td> 
+                                    <td><?php echo $result['FARE'];?></td> 
+                                    <td><a class="btn bg-primary text-white" href="information.php?tno=<?php echo $result['TR_NO'];?>&tname=<?php echo $result['TR_NAME'];?>&fare=<?php echo $result['FARE'];?>">Book Now</a></td>
                             </tr>
                                 <?php
                                     }
