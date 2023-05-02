@@ -106,9 +106,16 @@ if(isset($_POST['submit']))
             <option value="Tatkal"> Tatkal</option>
             <option value="Premium Tatkal"> Premium Tatkal</option>
           </select>
-          <label for="select">
-          <input type="text" placeholder="No of Passenger" id="select" name="select">
-          </label>
+          <select class="browser-default custom-select mb-4 pb-2" name="select" id="select">
+                    <option value="" disabled="" selected="">No of Passengers</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
         </div>
         <button type="submit" name="submit" class="btn btn-primary mt-3">Search</button>
       </form>
