@@ -1,14 +1,11 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname="myproject";
-$conn = mysqli_connect($servername, $username, $password ,$dbname); 
-$from = "<script>document.write(localStorage.getItem('source-value'));</script>";
-$to = "<script>document.write(localStorage.getItem('destination-value'));</script>";
-$query = "SELECT * FROM train WHERE FROM_STN='$from' AND TO_STN='$to'";
-$result=mysqli_query($conn,$query);
+include('config/connection.php');
+session_start();
+$from = $_SESSION['from'];
+$to = $_SESSION['to'];
+$query = "SELECT * FROM TRAIN WHERE FROM_STN='$from' AND TO_STN='$to';";
+$result = mysqli_query($conn,$query);
 ?>
 
 
@@ -44,7 +41,7 @@ $result=mysqli_query($conn,$query);
                             </tr>
                             <tr>
                                 <?php
-                                    while($row=mysqli_fetch_assoc($result) )
+                                    while($row=mysqli_fetch_assoc($result))
                                     {
                                 ?>
                                     <td><?php echo $row['TR_NO'];?></td> 
@@ -53,7 +50,7 @@ $result=mysqli_query($conn,$query);
                                     <td><?php echo $row['TO_STN'];?></td>  
                                     <td><?php echo $row['SEATS'];?></td> 
                                     <td><?php echo $row['FARE'];?></td> 
-                                    <td><a class="btn bg-primary text-white" href="information.php?tno=<?php echo $result['TR_NO'];?>&tname=<?php echo $result['TR_NAME'];?>&fare=<?php echo $result['FARE'];?>">Book Now</a></td>
+                                    <td><a class="btn bg-primary text-white" href="information.php?tno=<?php echo $row['TR_NO'];?>&tname=<?php echo $row['TR_NAME'];?>&fare=<?php echo $row['FARE'];?>&seat=<?php echo $row['SEATS'];?>">Book Now</a></td>
                             </tr>
                                 <?php
                                     }

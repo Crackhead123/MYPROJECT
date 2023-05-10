@@ -1,7 +1,15 @@
 <?php
 include('config/connection.php');
+session_start();
+
 if(isset($_POST['submit']))
 {
+  $_SESSION['from']=$_POST['source'];
+  $_SESSION['to']=$_POST['destination'];
+  $_SESSION['date']=$_POST['select_date'];
+  $_SESSION['prefer']=$_POST['prefer'];
+  $_SESSION['number']=$_POST['select'];
+  $_SESSION['pass_name']=$_POST['pass_name'];
   echo "<script type='text/javascript'>alert('Record Updated');window.location.href='available.php';</script>";
 }
 ?>
@@ -74,7 +82,7 @@ if(isset($_POST['submit']))
             </select>
             <br>
             <div class="input-group">
-                <lebel for="Swap"></lebel>
+                <label for="Swap"></label>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary bg-black" type="button" id="swap-button"><i class="fas fa-exchange-alt">
                 <img src="picture/swap.png" alt=""style="width:50%; height:25px">
@@ -98,7 +106,7 @@ if(isset($_POST['submit']))
           <input class="form-control" type="date" id="select_date" name="select_date" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
         </div>
         <div class="form-group">
-          <select class="form-control" id="General" name="General" required>
+          <select class="form-control" id="prefer" name="prefer" required>
             <option value="General"> General</option>
             <option value="Ladies"> Ladies</option>
             <option value="Lower Birth/ Sr citizen"> Lower Birth/ Sr Citizen</option>
@@ -117,28 +125,13 @@ if(isset($_POST['submit']))
                     <option value="7">7</option>
                 </select>
         </div>
+        <div class="">
+          <label for="pass_name"><b class="text-white">Ticket Under Name:</b></label>
+          <br>
+          <input type="text" name="pass_name" id="pass_name" placeholder="Enter Name" required size=85>
+        </div>
         <button type="submit" name="submit" class="btn btn-primary mt-3">Search</button>
       </form>
     </div>
-    <script type='text/javascript'>
-      const form =document.getElementById('form');
-      const from_stn =document.getElementById('source');
-      const to_stn = document.getElementById('destination');
-      const date = document.getElementById('select_date');
-      const number = document.getElementById('select')
-
-      form.addEventListener('submit',function()
-      {
-        const sourceValue=from_stn.value;
-        const destinationValue=to_stn.value;
-        const dateValue = date.value;
-        const numberValue = number.value;
-
-        localStorage.setItem('source-value',sourceValue);
-        localStorage.setItem('destination-value',destinationValue);
-        localStorage.setItem('date-value',dateValue);
-        localStorage.setItem('number-value',numberValue);
-      })
-    </script>
   </body>
 </html>  

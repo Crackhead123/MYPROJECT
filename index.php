@@ -1,79 +1,74 @@
+<?php
+include ('config/connection.php');
+session_start();
+if(isset($_POST['login']))
+
+{
+  $uname=$_POST['username'];
+  $pass=$_POST['password'];
+  $query='SELECT * FROM login WHERE username=? and password=?';
+  $stmt=mysqli_prepare($conn, $query);
+  mysqli_stmt_bind_param($stmt,'ss',$uname,$pass);
+  mysqli_stmt_execute($stmt);
+  if(mysqli_stmt_fetch($stmt))
+  {
+    $_SESSION['login_user']=$uname; 
+    echo "<script type='text/javascript'>alert('success');window.location.href='firstpage.php';</script>";
+  }
+  else
+  {
+    echo "<script type='text/javascript'>alert('error')</script>";
+  }
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <title>Second Page</title>
     <style>
-        .container{
-            margin-top: 100px;
-            display: flex;
-        }
-        h1{
-            text-align: center;
-            margin:auto;
-            background-color: blue;
-            color:white;
-        }
-        .book,.cancel,.history{
-            width: 300px;
-            height: 400px;
-            background-color: white;
-            margin: auto;
-            border: 3px solid white;
-            border-radius: 10px;
-        }
-        h3{
-            text-align: center;
-        }
-        .below
-        {
-            text-align: center;
-            margin-top: 80px;
-        }
-        .history:hover
-        {
-            transform: scale(1.3);
-            z-index: 2;
-        }
-        .book:hover
-        {
-            transform: scale(1.3);
-            z-index: 2;
-        }
-        .cancel:hover
-        {
-            transform: scale(1.3);
-            z-index: 2;
-        }
-        .btn
-        {
-           margin-left: 90px;
-           margin-top : 200px;
-        }
+      body{
+        background-image:url(picture/452080.jpg);
+        overflow: auto;
+      }
+      .container{
+    background-color:white;
+    width:400px;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding-bottom: 8px;
+    }
+    .h1
+    {
+      padding-top: 100px;
+    }
     </style>
 </head>
 <body>
-    <h1>Welcome</h1>
-    <div class="container">
-        <div class="book shadow-lg bg-body rounded">
-            <h3>Book Ticket</h3>
-            <button type="button" onclick="window.location.href='booking.php'" class="btn btn-outline-primary">Click Here</button>
-        </div>
-        <div class="cancel shadow-lg bg-body rounded">
-        <h3>Cancel Ticket</h3>
-        <button type="button" onclick="window.location.href='cancel.php'" class="btn btn-outline-primary">Click Here</button>
-        </div>
-        <div class="history shadow-lg bg-body rounded">
-            <h3>History</h3>
-            <button type="button" onclick="window.location.href='history.php'" class="btn btn-outline-primary">Click Here</button>
-        </div>
+    <p class="h1 mt-lg-5 text-center">Welcome To Indian Railway</p>
+<div class="container mt-5">
+  <h2>Login Here</h2>
+  <p id="demo"><b>Click inside the input field to see the floating label effect:</b></p>
+  <form method="POST">
+
+    <div class="form-floating mb-3 mt-3">
+      <input type="text" class="form-control" id="username" name="username">
+      <label for="username">Username</label>
     </div>
-    <footer class="below">
-        <p>For any questions please contact us</p>
-        <p>Toll Free Number: 1800 0343 3244</p>
-    </footer>
+    <div class="form-floating mt-3 mb-3">
+      <input type="password" class="form-control" id="password"  name="password">
+      <label for="password">Password</label>
+    </div>
+    <button type="submit" value="login" class="btn btn-primary" name="login">Login</button>
+    <button type="submit" value="register" class="btn btn-primary" name="register">Register</button>
+  </form>
+</div>
 </body>
 </html>

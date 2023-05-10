@@ -7,38 +7,24 @@ $dbname="myproject";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password ,$dbname);
-
-if(isset($_GET['tno']))
-{
-    $train_no=$_GET['tno'];
-}
-
-if(isset($_GET['tname']))
-{
-    $train_name=$_GET['tname'];
-}
-if(isset($_GET['fare']))
-{
-   $fare=$_GET['fare'];
-}
-
-$fr="<script>document.write(localStorage.getItem('source-value'));</script>";
-$to="<script>document.write(localStorage.getItem('destination-value'));</script>";
-$num="<script>document.write(localStorage.getItem('number-value'));</script>";
-$date="<script>document.write(localStorage.getItem('date-value'));</script>";
+session_start();
 
 if(isset($_POST['submit']))
 {
+$_SESSION['train_no']=$_GET['tno'];
+$_SESSION['train_name']=$_GET['tname'];
+$_SESSION['price']=$_GET['fare'];
+
+$_SESSION['no_of_seats']=$_GET['seat'];
+$_SESSION['name']=$_POST['fullname'];
 $fullname = $_POST['fullname'];
 $age = $_POST['age'];
 $gender = $_POST['gender'];
 $preference = $_POST['preference'];
 $nationality = $_POST['nationality'];
 
-$sql= "INSERT INTO passenger (fullname,age,gender,preference,nationality) VALUES('$fullname','$age','$gender','$preference','$nationality');
-
-INSERT INTO history (TR_NO,TR_NAME,DATE,FR_STN,TO_STN,AMOUNT,SEATS) VALUES('$train_no','$train_name','$date','$fr','$to','$amount','$num') ; ";
-if(mysqli_multi_query($conn,$sql))
+$sql= "INSERT INTO passenger (fullname,age,gender,preference,nationality) VALUES('$fullname','$age','$gender','$preference','$nationality');";
+if(mysqli_query($conn,$sql))
 {
     
     echo "<script type='text/javascript'>alert('Add Successfully');window.location.href='add.php';</script>";

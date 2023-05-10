@@ -2,9 +2,10 @@
 
 include('config/connection.php');
 error_reporting();
+session_start();
 
-
-$query = "SELECT * FROM history";
+$trans_id = $_SESSION['trans_no'];
+$query = "SELECT * FROM history WHERE Trans_id=$trans_id";
 $result = mysqli_query($conn,$query);
 $row = mysqli_fetch_assoc($result);
 ?>
@@ -30,22 +31,28 @@ $row = mysqli_fetch_assoc($result);
                     <div class="card-body">
                         <table class="table table-bordered text-center">    
                             <tr>
-                                <td class="bg-dark text-white">Train No</td>
+                                <td class="bg-dark text-white">Transaction Number</td>
+                                <td><?php echo $row['Trans_id'] ?></td>
+                                <td class="bg-dark text-white">Train Number</td>
                                 <td><?php echo $row['TR_NO'] ?></td>
-                                <td class="bg-dark text-white">Train Name</td>
-                                <td><?php echo $row['TR_NAME'] ?></td>
                             </tr>
                             <tr>
-                            <td class="bg-dark text-white">Source</td>
+                            <td class="bg-dark text-white">Train Name</td>
+                                <td><?php echo $row['TR_NAME'] ?></td>
+                                <td class="bg-dark text-white">Date</td>
+                                <td><?php echo $row['DATE'] ?></td>
+                            </tr>
+                            <tr>
+                                <td class="bg-dark text-white">Source</td>
                                 <td><?php echo $row['FR_STN'] ?></td>
                                 <td class="bg-dark text-white">Destination</td>
                                 <td><?php echo $row['TO_STN'] ?></td>
                             </tr>
                             <tr>
-                                <td class="bg-dark text-white">Date</td>
-                                <td><?php echo $row['DATE'] ?></td>
                                 <td class="bg-dark text-white">Amount</td>
                                 <td><?php echo $row['AMOUNT'] ?></td>
+                                <td class="bg-dark text-white">Number of seats</td>
+                                <td><?php echo $row['SEATS'] ?></td>
                             </tr>
                         </table>
                     </div>
@@ -53,8 +60,7 @@ $row = mysqli_fetch_assoc($result);
             </div>
         </div>
         <div class="text-center">   
-        <button type="button" onclick="window.location.href='information.php'" class="btn btn-primary">Add Passenger</button>
-        <button type="button" name="submit" class="btn btn-secondary" onclick="window.location.href='payment.php'">Proceed</button>
+        <button type="button" onclick="window.location.href='firstpage.php'" class="btn btn-primary">Home page</button>
         </div>
     </div>
 </body>
