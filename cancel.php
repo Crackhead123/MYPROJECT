@@ -8,8 +8,20 @@ if(!$con)
 {
     die("Connection error");
 }
-
-
+session_start();
+if(isset($_GET['home_page']))
+{
+    $no_of_seats = $_SESSION['no_of_seats'];
+    $no_of_passengers =  $_SESSION['number'];
+    $total = $no_of_seats + $no_of_passengers;
+    $train_no = $_SESSION['train_no'];
+    $sql = "UPDATE train SET SEATS = $total WHERE TR_NO = $train_no";
+    $sql_run = mysqli_query($con,$sql);
+    if($sql_run)
+    {
+        echo "<script type='text/javascript'>alert('Train Record Updated');window.location.href='firstpage.php';</script>";
+    }
+}
 ?>
 
 
@@ -117,7 +129,7 @@ if(!$con)
                             </tbody>
                         </table>
                         <form method="GET">
-                        <button class="btn btn-primary" onclick="window.location.href='firstpage.php'">Home Page</button>
+                        <button class="btn btn-primary" name="home_page">Home Page</button>
                         </form>
                     </div>
                 </div>
