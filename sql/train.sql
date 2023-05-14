@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2023 at 01:18 PM
+-- Generation Time: May 14, 2023 at 03:04 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `train` (
-  `TR_NO` int(10) NOT NULL PRIMARY KEY,
+  `TR_NO` int(10) NOT NULL,
   `TR_NAME` varchar(70) NOT NULL,
   `FROM_STN` varchar(20) NOT NULL,
   `TO_STN` varchar(20) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `train` (
 INSERT INTO `train` (`TR_NO`, `TR_NAME`, `FROM_STN`, `TO_STN`, `SEATS`, `FARE`) VALUES
 (10001, 'Teesta Torsha EXP', 'New Jalpaiguri', 'New Coochbehar', 150, '50.50'),
 (10002, 'Uttarbanga EXP', 'New Jalpaiguri', 'Dhupguri', 170, '30.50'),
-(10004, 'Kanchanjungha EXP', 'New Jalpaiguri', 'Maldah Town', 169, '40.50'),
+(10004, 'Kanchanjungha EXP', 'New Jalpaiguri', 'Maldah Town', 166, '40.50'),
 (10005, 'Teesta Torsha EXP', 'New Coochbehar', 'New Jalpaiguri', 150, '50.50'),
 (10006, 'Padatik EXP', 'New Coochbehar', 'Jalpaiguri Road', 150, '50.50'),
 (10007, 'Kanchanjungha EXP', 'New Coochbehar', 'Dhupguri', 150, '50.50'),

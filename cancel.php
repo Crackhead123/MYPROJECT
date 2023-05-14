@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
 $con= mysqli_connect("localhost","root","","myproject");
 
 
@@ -8,20 +12,7 @@ if(!$con)
 {
     die("Connection error");
 }
-session_start();
-if(isset($_GET['home_page']))
-{
-    $no_of_seats = $_SESSION['no_of_seats'];
-    $no_of_passengers =  $_SESSION['number'];
-    $total = $no_of_seats + $no_of_passengers;
-    $train_no = $_SESSION['train_no'];
-    $sql = "UPDATE train SET SEATS = $total WHERE TR_NO = $train_no";
-    $sql_run = mysqli_query($con,$sql);
-    if($sql_run)
-    {
-        echo "<script type='text/javascript'>alert('Train Record Updated');window.location.href='firstpage.php';</script>";
-    }
-}
+
 ?>
 
 
@@ -87,7 +78,8 @@ if(isset($_GET['home_page']))
                                     if(isset($_GET['search']))
                                     {
                                         $filtervalues = $_GET['search'];
-                                        $query = "SELECT * FROM history WHERE CONCAT(Trans_id,TR_NO,TR_NAME,DATE,FR_STN,TO_STN,AMOUNT,SEATS) LIKE '%$filtervalues%'";
+                                        $user=$_SESSION['login_user'];
+                                        $query = "SELECT * FROM history WHERE Trans_id = $filtervalues AND user_name='$user'";
                                         $query_run = mysqli_query($conn,$query);
 
                                         if(mysqli_num_rows($query_run) > 0)
@@ -104,7 +96,7 @@ if(isset($_GET['home_page']))
                                                     <td><?= $items['TO_STN']; ?></td>
                                                     <td><?= $items['AMOUNT']; ?></td>
                                                     <td><?= $items['SEATS']; ?></td> 
-                                                    <td><button class="btn btn-danger"><a class="text-light" href="remove.php?trans_num=<?= $items['Trans_id']; ?>">Cancel</a></button></td>
+                                                    <td><button name="cancel" id="cancel" class="btn btn-danger"><a class="text-light" href="remove.php?trans_num=<?= $items['Trans_id']; ?>">Cancel</a></button></td>
                                                 </tr>
                                                 <?php
                                             }
@@ -128,9 +120,7 @@ if(isset($_GET['home_page']))
 
                             </tbody>
                         </table>
-                        <form method="GET">
-                        <button class="btn btn-primary" name="home_page">Home Page</button>
-                        </form>
+                        <button class="btn btn-primary" onclick="window.location.href='firstpage.php'" name="home_page">Home Page</button>
                     </div>
                 </div>
             </div>

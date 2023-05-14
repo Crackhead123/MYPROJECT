@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -7,7 +13,7 @@ $dbname="myproject";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password ,$dbname);
-session_start();
+
 
 if(isset($_POST['submit']))
 {
@@ -22,8 +28,9 @@ $age = $_POST['age'];
 $gender = $_POST['gender'];
 $preference = $_POST['preference'];
 $nationality = $_POST['nationality'];
+$name=$_SESSION['login_user'];
 
-$sql= "INSERT INTO passenger (fullname,age,gender,preference,nationality) VALUES('$fullname','$age','$gender','$preference','$nationality');";
+$sql= "INSERT INTO passenger (fullname,age,gender,preference,nationality,user) VALUES('$fullname','$age','$gender','$preference','$nationality','$name');";
 if(mysqli_query($conn,$sql))
 {
     

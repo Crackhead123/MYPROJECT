@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
 
 $con= mysqli_connect("localhost","root","","myproject");
 
@@ -8,8 +13,8 @@ if(!$con)
 {
     die("Connection error");
 }
-
-$query = "SELECT * FROM passenger";
+$username=$_SESSION['login_user'];
+$query = "SELECT * FROM passenger WHERE user='$username'";
 $result = mysqli_query($con,$query);
 
 ?>
@@ -43,6 +48,7 @@ $result = mysqli_query($con,$query);
                                 <td>Gender</td>
                                 <td>Preference</td>
                                 <td>Edit</td>
+                                <td>Delete</td>
                             </tr>
                             <tr>
                                 <?php
@@ -54,6 +60,7 @@ $result = mysqli_query($con,$query);
                                     <td><?php echo $row['gender'];?></td> 
                                     <td><?php echo $row['preference'];?></td>  
                                     <td><a class="btn bg-primary" href="update.php?fn=<?php echo $row['fullName'];?>&ag=<?php echo $row['age'];?>&gen=<?php echo $row['gender'];?>&pre=<?php echo $row['preference'];?>&id=<?php echo $row['p_id'];?>">Edit</a></td>
+                                    <td><a class="btn bg-primary" href="delete.php?name=<?php echo $row['fullName'];?>">Delete</a></td>
                             </tr>
                                 <?php
                                     }

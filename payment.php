@@ -1,8 +1,14 @@
 <?php
-include('config/connection.php');
 session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+
+include('config/connection.php');
 if(isset($_POST['submit']))
 {
+	$user_name = $_SESSION['login_user'];
 	$_SESSION['trans_no']=$_POST['cvv'];
 	$unique_id = $_POST['cvv'];
 	$train_no = $_SESSION['train_no'];
@@ -16,7 +22,8 @@ if(isset($_POST['submit']))
 	$name = $_SESSION['name'];
 	$amount = $seats * $price ; 
 	$seats_left = $train_seats - $seats;
-	$query = "INSERT INTO history(Trans_id,TR_NO,TR_NAME,DATE,FR_STN,TO_STN,AMOUNT,SEATS)VALUES($unique_id,$train_no,'$train_name','$date','$source','$destination',$amount,$seats);
+	$_SESSION['seats_left']=$seats_left;
+	$query = "INSERT INTO history(Trans_id,TR_NO,TR_NAME,DATE,FR_STN,TO_STN,AMOUNT,SEATS,user_name)VALUES($unique_id,$train_no,'$train_name','$date','$source','$destination',$amount,$seats,'$user_name');
 	UPDATE train SET SEATS=$seats_left WHERE TR_NO=$train_no;";
 	if(mysqli_multi_query($conn,$query))
 	{

@@ -1,6 +1,11 @@
 <?php
-include('config/connection.php');
 session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+include('config/connection.php');
+
 
 if(isset($_POST['submit']))
 {
@@ -125,11 +130,7 @@ if(isset($_POST['submit']))
                     <option value="7">7</option>
                 </select>
         </div>
-        <div class="">
-          <label for="pass_name"><b class="text-white">Ticket Under Name:</b></label>
-          <br>
-          <input type="text" name="pass_name" id="pass_name" placeholder="Enter Name" required size=85>
-        </div>
+         
         <button type="submit" name="submit" class="btn btn-primary mt-3">Search</button>
       </form>
     </div>

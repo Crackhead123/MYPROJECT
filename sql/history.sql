@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2023 at 01:21 PM
+-- Generation Time: May 14, 2023 at 03:04 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -35,7 +35,8 @@ CREATE TABLE `history` (
   `FR_STN` varchar(30) DEFAULT NULL,
   `TO_STN` varchar(30) DEFAULT NULL,
   `AMOUNT` decimal(6,2) DEFAULT NULL,
-  `SEATS` int(11) DEFAULT NULL
+  `SEATS` int(11) DEFAULT NULL,
+  `user_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

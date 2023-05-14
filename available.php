@@ -1,7 +1,11 @@
 <?php
-
-include('config/connection.php');
 session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+include('config/connection.php');
+
 $from = $_SESSION['from'];
 $to = $_SESSION['to'];
 $query = "SELECT * FROM TRAIN WHERE FROM_STN='$from' AND TO_STN='$to';";

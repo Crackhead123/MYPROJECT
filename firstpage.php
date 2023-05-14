@@ -1,5 +1,11 @@
 <?php
-include('session.php');
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+
+
 ?>
 
 
@@ -65,7 +71,9 @@ include('session.php');
     <div class="container">
         <div class="book shadow-lg bg-body rounded">
             <h3>Book Ticket</h3>
-            <button type="button" onclick="window.location.href='booking.php'" class="btn btn-outline-primary">Click Here</button>
+            <form method="GET">
+            <button type="button" onclick="window.location.href='booking.php'" name="booking" class="btn btn-outline-primary">Click Here</button>
+            </form>
         </div>
         <div class="cancel shadow-lg bg-body rounded">
         <h3>Cancel Ticket</h3>

@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+
 
 $con= mysqli_connect("localhost","root","","myproject");
 
@@ -8,9 +14,8 @@ if(!$con)
 {
     die("Connection error");
 }
-session_start();
-$trans_id  = $_SESSION['trans_no'];
-$query = "SELECT * FROM history WHERE Trans_id=$trans_id";
+$user = $_SESSION['login_user'];
+$query = "SELECT * FROM history WHERE user_name = '$user'";
 $result = mysqli_query($con,$query);
 
 ?>

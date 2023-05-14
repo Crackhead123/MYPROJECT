@@ -1,8 +1,13 @@
 <?php
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
 
 include('config/connection.php');
 error_reporting();
-session_start();
+
 
 $trans_id = $_SESSION['trans_no'];
 $query = "SELECT * FROM history WHERE Trans_id=$trans_id";

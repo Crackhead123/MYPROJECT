@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2023 at 01:22 PM
+-- Generation Time: May 14, 2023 at 03:04 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -33,7 +33,8 @@ CREATE TABLE `passenger` (
   `gender` varchar(7) NOT NULL,
   `preference` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
-  `p_id` int(11) NOT NULL
+  `p_id` int(11) NOT NULL,
+  `user` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -54,7 +55,7 @@ ALTER TABLE `passenger`
 -- AUTO_INCREMENT for table `passenger`
 --
 ALTER TABLE `passenger`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

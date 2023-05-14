@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION['login_user']))
+{
+    header("location:index.php");
+}
+
 include('config/connection.php');
 error_reporting(0);
 
