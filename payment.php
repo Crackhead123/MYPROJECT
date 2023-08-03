@@ -117,10 +117,12 @@ if(isset($_POST['submit']))
 				<br><br>
 
 				Credit card number
-			<input type="text" name="card_number" placeholder="Enter card number">
+				<input type="text" id="card_number" name="card_number" placeholder="Enter card number" maxlength="16" required>
+
 				
-				Exp month
-				<input type="text" name="exp" placeholder="Enter Month">
+				Exp Month
+                 <input type="text" name="exp" placeholder="Enter Month" oninput="validateExpMonth(this)">
+
 				<div id="zip">
 					<label>
 						Exp year
@@ -130,6 +132,12 @@ if(isset($_POST['submit']))
 							<option>2023</option>
 							<option>2024</option>
 							<option>2025</option>
+							<option>2026</option>
+							<option>2027</option>
+							<option>2028</option>
+							<option>2029</option>
+							<option>2030</option>
+							
 						</select>
 					</label>
 						<label>
@@ -142,5 +150,29 @@ if(isset($_POST['submit']))
 		</div>
 	</div>
 </header>
+<script>
+	document.getElementById("card_number").addEventListener("input", function (e) {
+		var input = e.target.value;
+		e.target.value = input.replace(/[^\d]/g, "").substr(0, 16);
+	});
+</script>
+<script>
+function validateExpMonth(input) {
+  // Remove any non-digit characters
+  input.value = input.value.replace(/\D/g, '');
+
+  // Limit the input to 2 digits
+  if (input.value.length > 2) {
+    input.value = input.value.slice(0, 2);
+  }
+
+  // Limit the input to a maximum value of 12
+  const month = parseInt(input.value, 10);
+  if (month > 12) {
+    input.value = '12';
+  }
+}
+</script>
+
 </body>
 </html>

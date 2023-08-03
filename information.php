@@ -67,25 +67,28 @@ if(mysqli_query($conn,$sql))
     <link href="css/bootstrap.css" rel="stylesheet">
     <title>Information</title>
     <style>
+        body{
+            overflow: hidden
+        }
         .first{
             max-width: 800px;
-            height: 750px;
+            height: 400px;
             background-color: white;
             margin:auto;
         }
         h1{
             text-align:center;
             color: black;
-            font-size: 29px;
+            font-size: 27px;
             padding: 12px 10px;
         }
         p{
             margin: 10px;
-            font-size: 24px;
+            font-size: 20px;
         }
         .textbox
         {
-            margin: 10px;
+            margin: 9px;
             width: 780px;
             border-top: 0px;
             border-left: 0px;
@@ -94,7 +97,7 @@ if(mysqli_query($conn,$sql))
         }
         .radio
         {
-            margin: 10px;
+            margin: 9px;
         }
         #female
         {
@@ -103,7 +106,7 @@ if(mysqli_query($conn,$sql))
         .select
         {
             width: 780px;
-            margin: 10px;
+            margin: 9px;
         }
         .btn
         {
@@ -119,6 +122,7 @@ if(mysqli_query($conn,$sql))
     </style>
 </head>
 <body>
+    
     <div class="first">
         <form method="POST">
             <h1>Add Traveller</h1>

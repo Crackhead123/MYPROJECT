@@ -34,41 +34,45 @@ if(isset($_POST['login']))
     <title>Login Page</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <style>
-      body{
-        background-image:url(picture/452080.jpg);
-        overflow: auto;
+      body {
+        background-image: url("picture/26632.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
       }
-      .container{
-    background-color:white;
-    width:400px;
-    border: 5px solid black;
-    border-radius: 10px;
-    padding-bottom: 8px;
-    }
-    .h1
-    {
-      padding-top: 100px;
-    }
+      .container {
+        background-color: white;
+        width: 400px;
+        border: 5px solid black;
+        border-radius: 10px;
+        padding-bottom: 10px;
+        opacity: 0.8; /* Added opacity property */
+      
+      }
+      .h1 {
+        padding-top: 100px;
+      }
     </style>
 </head>
 <body>
     <p class="h1 mt-lg-5 text-center">Welcome To Indian Railway</p>
-<div class="container mt-5">
-  <h2>Login Here</h2>
-  <p id="demo"><b>Click inside the input field to see the floating label effect:</b></p>
-  <form method="POST">
+    <div class="container mt-5">
+        <h2>Login Here</h2>
 
-    <div class="form-floating mb-3 mt-3">
-      <input type="text" class="form-control" id="username" name="username">
-      <label for="username">Username</label>
+        <form method="POST">
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="username" name="username">
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating mt-3 mb-3">
+                <input type="password" class="form-control" id="password"  name="password">
+                <label for="password">Password</label>
+            </div>
+            <button type="submit" value="login" class="btn btn-primary" name="login">Login</button>
+            <button type="submit" value="register" class="btn btn-primary" name="register">Register</button>
+        </form>
     </div>
-    <div class="form-floating mt-3 mb-3">
-      <input type="password" class="form-control" id="password"  name="password">
-      <label for="password">Password</label>
-    </div>
-    <button type="submit" value="login" class="btn btn-primary" name="login">Login</button>
-    <button type="submit" value="register" class="btn btn-primary" name="register">Register</button>
-  </form>
-</div>
 </body>
 </html>
