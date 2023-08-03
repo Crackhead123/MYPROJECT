@@ -9,8 +9,8 @@ include('config/connection.php');
 if(isset($_POST['submit']))
 {
 	$user_name = $_SESSION['login_user'];
-	$_SESSION['trans_no']=$_POST['cvv'];
-	$unique_id = $_POST['cvv'];
+	$unique_id = rand(100,10000);
+	$_SESSION['trans_no']=$unique_id;
 	$train_no = $_SESSION['train_no'];
 	$train_name = $_SESSION['train_name'];
 	$date = $_SESSION['date'];
