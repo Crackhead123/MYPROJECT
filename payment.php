@@ -117,12 +117,18 @@ if(isset($_POST['submit']))
 				<br><br>
 
 				Credit card number
+
 				<input type="text" id="card_number" name="card_number" placeholder="Enter card number" maxlength="16" required>
 
 				
 				Exp Month
                  <input type="text" name="exp" placeholder="Enter Month" oninput="validateExpMonth(this)">
 
+
+			<input type="text" name="card_number" placeholder="Enter card number" required>
+				
+				Exp month
+				<input type="text" name="exp" placeholder="Enter Month" required>
 				<div id="zip">
 					<label>
 						Exp year
@@ -142,7 +148,7 @@ if(isset($_POST['submit']))
 					</label>
 						<label>
 						CVV
-						<input type="number" name="cvv" value="cvv" placeholder="CVV">
+						<input type="number" name="cvv" value="cvv" placeholder="CVV" required>
 					</label>
 				</div>
 				<input type="submit" name="submit" value="Proceed to Checkout">
