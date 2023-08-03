@@ -29,7 +29,6 @@ if(!isset($_SESSION['login_user']))
             width: 100%;
             background-color: navy;
             color: white;
-            padding: 10px 0;
             text-align: center;
         }
         
@@ -39,8 +38,8 @@ if(!isset($_SESSION['login_user']))
         }
         
         .book, .cancel, .history {
-            width: 300px;
-            height: 400px;
+            width: 400px;
+            height: 500px;
             background-color: white;
             margin: auto;
             border: 3px solid white;
@@ -61,22 +60,19 @@ if(!isset($_SESSION['login_user']))
         }
         
         .history:hover {
-            transform: scale(1.1);
-            z-index: 1;
+            transform: scale(0.8);
         }
         
         .book:hover {
-            transform: scale(1.1);
-            z-index: 1;
+            transform: scale(0.8);
         }
         
         .cancel:hover {
-            transform: scale(1.1);
-            z-index: 1;
+            transform: scale(0.8);
         }
         
-        .btn {
-            margin-top : 20px;
+        .btn{
+            margin-bottom: 35px;
         }
         
         .footer {
@@ -88,6 +84,10 @@ if(!isset($_SESSION['login_user']))
             padding: 10px 0;
             text-align: center;
         }
+        img{
+            max-height: 100%;
+            max-width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -96,20 +96,18 @@ if(!isset($_SESSION['login_user']))
     </div>
     
     <div class="container">
-        <div class="book shadow-lg bg-body rounded">
+        <div class="book shadow-lg bg-body rounded" onclick="window.location.href='booking.php'">
             <img src="picture/booking_lady.jpg" alt="Book Ticket">
-            <form method="GET">
-                <button type="button" onclick="window.location.href='booking.php'" name="booking" class="btn btn-outline-primary">Click Here</button>
-            </form>
+            <button type="button" class="btn btn-primary">Book Now</button>
         </div>
-        <div class="cancel shadow-lg bg-body rounded">
+        <div class="cancel shadow-lg bg-body rounded" onclick="window.location.href='cancel.php'">
             <img src="picture/3896684.jpg" alt="Cancel Ticket">
-            <button type="button" onclick="window.location.href='cancel.php'" class="btn btn-outline-primary">Click Here</button>
+            <button type="button" class="btn btn-primary">Cancel Ticket</button>
         </div>
-        <div class="history shadow-lg bg-body rounded">
+        <div class="history shadow-lg bg-body rounded" onclick="window.location.href='history.php'">
             
             <img src="picture/history.jpg" alt="History">
-            <button type="button" onclick="window.location.href='history.php'" class="btn btn-outline-primary">Click Here</button>
+            <button type="button" class="btn btn-primary">History</button>
         </div>
     </div>
     
