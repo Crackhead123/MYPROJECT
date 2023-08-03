@@ -19,7 +19,7 @@ $sql= "INSERT INTO login (username,password) VALUES('$user','$pass')";
 if(mysqli_query($conn,$sql))
 {
     
-        echo "<script type='text/javascript'>alert('User Registered');window.location.href='bootlogin.php';</script>";
+        echo "<script type='text/javascript'>alert('User Registered');window.location.href='index.php';</script>";
     
 }
 

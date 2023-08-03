@@ -123,12 +123,6 @@ if(isset($_POST['submit']))
 				
 				Exp Month
                  <input type="text" name="exp" placeholder="Enter Month" oninput="validateExpMonth(this)">
-
-
-			<input type="text" name="card_number" placeholder="Enter card number" required>
-				
-				Exp month
-				<input type="text" name="exp" placeholder="Enter Month" required>
 				<div id="zip">
 					<label>
 						Exp year

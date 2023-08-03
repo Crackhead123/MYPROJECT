@@ -71,7 +71,7 @@ if(isset($_POST['login']))
                 <label for="password">Password</label>
             </div>
             <button type="submit" value="login" class="btn btn-primary" name="login">Login</button>
-            <button type="submit" value="register" class="btn btn-primary" name="register">Register</button>
+            <a href="registor.php" class="btn btn-primary">Register</button></a>
         </form>
     </div>
 </body>
